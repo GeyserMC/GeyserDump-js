@@ -122,10 +122,8 @@ app.use(route(function(router) {
   });
 
   // add documents
-  router.post('/documents', function(request, response) {
-    return postRateLimit(request, response, () => {
-      return documentHandler.handlePost(request, response);
-    })
+  router.post('/documents', postRateLimit, function (request, response) {
+    return documentHandler.handlePost(request, response);
   });
 
   // get documents
